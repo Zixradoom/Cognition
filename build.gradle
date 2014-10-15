@@ -23,7 +23,7 @@ dependencies {
 
 targetCompatibility = 1.8
 sourceCompatibility = 1.8
-version = '1.0'
+version = '1.0.0.1'
 
 /*
 jar {
