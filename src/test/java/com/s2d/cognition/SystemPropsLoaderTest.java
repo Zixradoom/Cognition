@@ -1,4 +1,4 @@
-package com.s2d.cognition.test;
+package com.s2d.cognition;
 
 import static org.junit.Assert.assertEquals;
 
