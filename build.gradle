@@ -9,6 +9,10 @@ task wrapper(type: Wrapper) {
 
 repositories {
   mavenCentral()
+  flatDir {
+    name "local"
+    dirs "${System.getProperty( 'user.home' )}/javalib"
+  }
 }
 
 dependencies {
@@ -28,5 +32,11 @@ jar {
   }
 }
 */
+
+uploadArchives {
+  repositories {
+    add project.repositories.local
+  }
+}
 
 javadoc.options.links("http://docs.oracle.com/javase/7/docs/api/")
