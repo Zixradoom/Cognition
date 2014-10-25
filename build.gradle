@@ -1,6 +1,7 @@
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 
 // gradle wrapper task
 task wrapper(type: Wrapper) {
@@ -8,10 +9,12 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
-  mavenCentral()
-  flatDir {
-    name "local"
-    dirs "${System.getProperty( 'user.home' )}/javalib"
+  maven {
+    credentials {
+      username mavenUser
+      password mavenPassword
+    }
+    url "https://www.simonsoftwaredesign.info:8082/nexus/content/groups/public"
   }
 }
 
@@ -23,7 +26,8 @@ dependencies {
 
 targetCompatibility = 1.8
 sourceCompatibility = 1.8
-version = '1.0.0.1'
+version = '1.0.0.2'
+group = 'com.s2d'
 
 /*
 jar {
@@ -35,7 +39,15 @@ jar {
 
 uploadArchives {
   repositories {
-    add project.repositories.local
+    mavenDeployer {
+      repository(url: "https://www.simonsoftwaredesign.info:8082/nexus/content/repositories/releases") {
+        authentication(userName: mavenUser, password: mavenPassword)
+      }
+      snapshotRepository(url: "https://www.simonsoftwaredesign.info:8082/nexus/content/repositories/snapshots") {
+        authentication(userName: mavenUser, password: mavenPassword)
+      }
+    }
+    //add project.repositories.local
   }
 }
 
