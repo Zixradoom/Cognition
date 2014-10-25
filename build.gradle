@@ -3,7 +3,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
-// gradle wrapper task
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+version = '1.0.0.2'
+group = 'com.s2d'
+
 task wrapper(type: Wrapper) {
   gradleVersion = '1.4'
 }
@@ -19,23 +23,12 @@ repositories {
 }
 
 dependencies {
-  compile group: 'junit', name: 'junit', version: '4.11'
   compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.0.2'
   compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.0.2'
+  testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-targetCompatibility = 1.8
-sourceCompatibility = 1.8
-version = '1.0.0.2'
-group = 'com.s2d'
-
-/*
-jar {
-  manifest {
-    attributes 'Main-Class': 'com.s2d.test.HelloWorld'
-  }
-}
-*/
+test.scanForTestClasses(false)
 
 uploadArchives {
   repositories {
