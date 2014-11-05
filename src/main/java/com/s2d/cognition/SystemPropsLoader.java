@@ -28,7 +28,7 @@ public final class SystemPropsLoader
 	 * Read the "com.s2d.cognition.system.props" {@link System} property
 	 * and load the {@link Properties} file specified in it. Create the new <code>Properties</code> object
 	 * with the current <code>System</code> <code>Properties</code> as the parent and set the new
-	 * {@link Properties</code> as the new <code>System</code> <code>Properties</code>
+	 * <code>Properties</code> as the new <code>System</code> <code>Properties</code>
 	 */
 	public static void init ()
 	{
