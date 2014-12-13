@@ -38,6 +38,8 @@ public final class SystemPropsLoader
    */
   public static void init ()
   {
+    LOGGER.entry ();
+    
     URL propFileURL = getPropertiesURL ();
     if ( propFileURL != null )
     {
@@ -57,6 +59,7 @@ public final class SystemPropsLoader
     {
       LOGGER.info ( "No Cognition Properties File has been detected." );
     }
+    LOGGER.exit ();
   }
 
   /**
@@ -65,6 +68,7 @@ public final class SystemPropsLoader
    */
   public static URL getPropertiesURL()
   {
+    LOGGER.entry ();
     /*
      * Search Order
      * 1) System properties
@@ -111,6 +115,6 @@ public final class SystemPropsLoader
     if ( returnValue == null )
       returnValue = Thread.currentThread ().getContextClassLoader ().getResource ( DEFAULT_FILE_NAME );
 
-    return returnValue;
+    return LOGGER.exit ( returnValue );
   }
 }

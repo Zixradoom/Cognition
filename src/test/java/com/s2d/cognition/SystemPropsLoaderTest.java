@@ -1,13 +1,15 @@
 package com.s2d.cognition;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.matchers.JUnitMatchers.*;
+import static org.hamcrest.CoreMatchers.*;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Map.Entry;
 import java.util.Properties;
 
@@ -74,6 +76,13 @@ public class SystemPropsLoaderTest
   }
   
   @Test
+  public void testGetPropertiesURL ()
+  {
+    URL url = SystemPropsLoader.getPropertiesURL ();
+    assertThat ( url, notNullValue ( URL.class ) );
+  }
+  
+  @Test
   public void testInit ()
   {
     // get the new values
@@ -89,14 +98,14 @@ public class SystemPropsLoaderTest
       Object actualKey = actual.getKey ();
       Object actualValue = actual.getValue ();
       Object expectedValue = oldSystemProps.getProperty ( actualKey.toString () );
-      assertEquals ( "Actual: " + actualKey.toString (), expectedValue, actualValue );
+      assertThat ( actualValue, is ( expectedValue ) );
     }
     for ( Entry < Object, Object > expected : oldSystemProps.entrySet () )
     {
       Object expectedKey = expected.getKey ();
       Object expectedValue = expected.getValue ();
       Object actualValue = newSystemProps.getProperty ( expectedKey.toString () );
-      assertEquals ( "Expected: " + expectedKey.toString (), expectedValue, actualValue );
+      assertThat ( actualValue, is ( expectedValue )  );
     }
   }
   
