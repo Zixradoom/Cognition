@@ -78,6 +78,7 @@ public class SystemPropsLoaderTest
   @Test
   public void testGetPropertiesURL ()
   {
+    System.setProperty ( SystemPropsLoader.COGNITION_SYSTEM_PROPS, "" );
     URL url = SystemPropsLoader.getPropertiesURL ();
     assertThat ( url, notNullValue ( URL.class ) );
   }
