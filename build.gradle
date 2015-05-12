@@ -5,7 +5,7 @@ apply plugin: 'maven'
 
 targetCompatibility = 1.8
 sourceCompatibility = 1.8
-version = '1.0.0.4'
+version = '1.0.1.1'
 group = 'com.s2d'
 
 task wrapper(type: Wrapper) {
@@ -20,6 +20,11 @@ repositories {
     }
     url "https://www.simonsoftwaredesign.info:8082/nexus/content/groups/public"
   }
+  maven {
+    name = "localA"
+    url  = "file:///${System.env.USERPROFILE}/Documents/codeRepo".toURL ()
+  }
+  mavenCentral ()
 }
 
 dependencies {
@@ -49,6 +54,7 @@ artifacts {
 
 uploadArchives {
   repositories {
+    add project.repositories.localA
     mavenDeployer {
       repository(url: "https://www.simonsoftwaredesign.info:8082/nexus/content/repositories/releases") {
         authentication(userName: mavenUser, password: mavenPassword)
